@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product Grid</title>
+    <style>/* Basic Reset */
+        {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color:#e1b382;
+            color: #333;
+            line-height: 1.6;
+        }
+        /* Search Box Section */
+        .search-section {
+              background-color: #c89666;
+              padding: 20px 0;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .search-section .container {
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+
+.search-box {
+    width: 100%;
+    max-width: 1150px;
+    padding: 14px 50px 14px 20px; /* Add padding for the icon space */
+    font-size: 1.1rem;
+    border: 2px solid #fff;
+    border-radius: 50px; /* Rounded corners for a pill shape */
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* .search-box::placeholder {
+    color: #fff; /* Light placeholder text color */
+    font-style: italic;
+}
+
+.search-box:focus {
+    border-color: #fff; /* White border on focus */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Subtle white glow */
+}
+
+.search-box::before {
+    content: '\1F50D'; /* Unicode for magnifying glass icon */
+    font-size: 1.4rem;
+    color: white;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+} */
+
+/* Add an Icon on the Left */
+.search-box {
+    position: relative;
+}
+
+.search-box:hover {
+    background-color: #c89666;
+}
+
+        /* Product Grid Section */
+        .product-grid {
+            padding: 40px 0;
+            background-color: #c89666;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 3-4 products per row, auto adjust */
+            gap: 20px;
+            background:#c89666  
+        }
+        
+        /* Product Box */
+        .product-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .product-title {
+            font-size: 1.5rem;
+            margin: 15px 0;
+            color: #333;
+        }
+        
+        .product-description {
+            font-size: 1rem;
+            color: #777;
+            margin-bottom: 15px;
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #d9534f;
+            margin-bottom: 20px;
+        }
+        
+        .add-to-cart {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #218838;
+        }
+        </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+        <!-- Search Section -->
+        <section class="search-section">
+                <form  action="/productsearch", method="POST">
+                <input type="text" class="search-box" name="search_pro" placeholder="Search for products...">
+                <input class="search-box" style="width:100px;height:50px;margin:10px auto;background:#2d545e;color:white;text-align:center", type="submit" name="submit">
+            </form>
+        </section>
+    <!-- Product Grid Section -->
+    <section class="product-grid">
+        <div class="container">
+            <!-- Product Box 1 -->
+             {% for i in online:%}
+            <div class="product-box">
+                <img src={{i[0]}} alt="Product Image">
+                <h3 class="product-title">{{i[1]}}</h3>
+                <p class="product-description">{{i[3]}}</p>
+                <p class="product-price">{{i[2]}}</p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+
+</body>
+</html>
